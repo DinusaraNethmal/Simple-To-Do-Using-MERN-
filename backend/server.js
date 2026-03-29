@@ -23,11 +23,17 @@ app.get("/", (req, res) => {
     res.send("API is working");
 });
 
+// Register routes
+const taskRoutes = require("./routes/taskRoutes");
+app.use("/api/tasks", taskRoutes);
+
 //Start server
 app.listen(PORT, () => {
-    console.log('Server running on port ${PORT}');
+    console.log(`Server running on port ${PORT}`);
 });
 
-const taskRoutes = require("./routes/taskRoutes");
+// Import the new routes
+const authRoutes = require("./routes/authRoutes");
 
-app.use("/api/tasks", taskRoutes);
+// Use the routes
+app.use("/api/auth", authRoutes);
